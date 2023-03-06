@@ -6,25 +6,28 @@ import { Button, Alert, Form } from 'react-bootstrap';
 import Layout from "../components/Layout";
 
 import { DataContext } from "../src/DataContext";
+import setting from "../setting";
 
 export default function ChatPage() {
 
   const [connection, setConnection] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSendMessage = () => {
+    setError(null);
     const user = sharedData.username;
     const message = sharedData.message;
     connection.invoke("SendMessage", user, message).catch((err) => {
-      console.error(err);
+      setError(`${err}`);
     });
   };
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl("http://localhost:8000/chatHub") // SignalRサーバーのURLを指定
+      .withUrl(`${setting.apiPath}/chatHub`) // SignalRサーバーのURLを指定
       .build();
-
     setConnection(newConnection);
   }, []);
 
@@ -33,10 +36,10 @@ export default function ChatPage() {
       connection
         .start()
         .then(() => {
-          console.log("SignalR connected.");
+          setReady(true);
         })
         .catch((err) => {
-          console.error(err);
+          setError(`${err}`);
         });
 
       connection.on("ReceiveMessage", (user, message) => {
@@ -69,9 +72,16 @@ export default function ChatPage() {
               }
             } />
           </Form.Group>
-          <Button variant="primary" className="mt-3 d-block m-auto" onClick={handleSendMessage}>Send 📨</Button>
+          <Button variant="primary" className="mt-3 d-block m-auto" onClick={handleSendMessage} disabled={ready === false}>Send 📨</Button>
         </Form>
         <hr />
+        {
+          error && (
+            <Alert variant="danger">
+              {error}
+            </Alert>
+          )
+        }
         <ul>
           {messages.map((msg, idx) => (
             <li key={idx}>{msg}</li>
