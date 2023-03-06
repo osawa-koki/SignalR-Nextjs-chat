@@ -47,8 +47,7 @@ export default function ChatPage() {
   useEffect(() => {
     if (connection) {
       connection.on("ReceiveMessage", (user: string, message: string) => {
-        const newMessages = messages.concat(`${user}: ${message}`);
-        setMessages(newMessages);
+        setMessages([`${user}: ${message}`, ...messages]);
       });
     }
   }, [connection, messages]);
