@@ -41,7 +41,11 @@ export default function ChatPage() {
         .catch((err) => {
           setError(`${err}`);
         });
+    }
+  }, [connection]);
 
+  useEffect(() => {
+    if (connection) {
       connection.on("ReceiveMessage", (user, message) => {
         const newMessages = messages.concat(`${user}: ${message}`);
         setMessages(newMessages);
