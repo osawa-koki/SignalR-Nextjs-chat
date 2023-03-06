@@ -31,7 +31,7 @@ namespace sgnalr_nextjs_chat
       app.UseRouting();
       app.MapHub<ChatHub>("/chatHub");
 
-      app.Run();
+      app.Run("http://0.0.0.0:8000");
     }
   }
 }
