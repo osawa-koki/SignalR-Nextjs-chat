@@ -4,9 +4,14 @@ import Layout from "../components/Layout";
 export default function HelloWorld() {
   return (
     <Layout>
-      <div id="About" className="mt-3">
-        <h1>Here, About page.</h1>
-        <p>Next.js大好きです。<br />本当に使いやすいです。<br />僕はTypeScript × Next.jsを強くオススメします。<br /><br />静的型付け言語って難しいと思われがちですが、エディタの機能が豊富な現在は型付け言語の方が簡単に書くことができます。<br />さらには字句解析と構文解析に加えて、コンパイル時に、コンパイラによる意味解析を行ってくれるため、動的型付け言語と比較して動作に信頼性があります。<br /><br />また、Reactと比べてNext.jsはSSGによってビルド時にHTMLが生成されるため、SPA(SSR)と比べて高速に動作し、ユーザビリティが高いです。</p>
+      <div id="About">
+        <h1>SignalR × Next.js</h1>
+        <p className="mt-3">
+          サーバサイドはSignalR(C#)を使用してPRCによるWebSocket通信で実装し、<br />
+          クライアントサイドはNext.jsによるSSGを使用しています。<br />
+          <br />
+          Let&apos;s try SignalR × Next.js!
+        </p>
       </div>
     </Layout>
   );
