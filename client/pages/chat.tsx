@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { HubConnectionBuilder } from "@microsoft/signalr";
+import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 
 import { Button, Alert, Form } from 'react-bootstrap';
 import Layout from "../components/Layout";
@@ -10,23 +10,23 @@ import setting from "../setting";
 
 export default function ChatPage() {
 
-  const [connection, setConnection] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [ready, setReady] = useState(false);
-  const [error, setError] = useState(null);
+  const [connection, setConnection] = useState<HubConnection | null>(null);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [ready, setReady] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSendMessage = () => {
     setError(null);
     const user = sharedData.username;
     const message = sharedData.message;
-    connection.invoke("SendMessage", user, message).catch((err: Error) => {
+    connection!.invoke("SendMessage", user, message).catch((err: Error) => {
       setError(`${err}`);
     });
   };
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl(`${setting.apiPath}/chatHub`) // SignalRサーバーのURLを指定
+      .withUrl(`${setting.apiPath}/chatHub`)
       .build();
     setConnection(newConnection);
   }, []);
