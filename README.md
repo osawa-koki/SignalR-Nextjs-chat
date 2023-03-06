@@ -1,6 +1,6 @@
 # SingnalR-Nextjs-chat
 
-SignalR(C#)とNext.js(React)を使ったチャットアプリ。  
+🐔🐔🐔 SignalR(C#)とNext.js(React)を使ったチャットアプリ。  
 
 ## 開発環境の構築
 
