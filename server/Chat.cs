@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.SignalR;
 
-namespace rc4_chat_room
+namespace sinalr_nextjs_chat
 {
   public class ChatHub : Hub
   {
     public async Task SendMessage(string user, string message)
     {
+      Console.WriteLine(message);
       await Clients.All.SendAsync("ReceiveMessage", user, message);
     }
   }
