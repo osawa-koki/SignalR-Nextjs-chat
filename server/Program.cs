@@ -26,6 +26,7 @@ namespace sinalr_nextjs_chat
         app.UseExceptionHandler("/Error");
       }
       app.UseCors(MyCORS);
+      app.UseDefaultFiles();
       app.UseStaticFiles();
 
       app.UseRouting();
