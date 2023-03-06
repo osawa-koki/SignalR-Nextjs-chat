@@ -1,4 +1,4 @@
-namespace sgnalr_nextjs_chat
+namespace sinalr_nextjs_chat
 {
   public class Program
   {

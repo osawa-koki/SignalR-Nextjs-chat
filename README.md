@@ -1,4 +1,4 @@
-# SingnalR-Nextjs-chat
+# SignalR-Nextjs-chat
 
 🐔🐔🐔 SignalR(C#)とNext.js(React)を使ったチャットアプリ。  
 
