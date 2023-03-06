@@ -19,7 +19,7 @@ export default function ChatPage() {
     setError(null);
     const user = sharedData.username;
     const message = sharedData.message;
-    connection.invoke("SendMessage", user, message).catch((err) => {
+    connection.invoke("SendMessage", user, message).catch((err: Error) => {
       setError(`${err}`);
     });
   };
@@ -38,7 +38,7 @@ export default function ChatPage() {
         .then(() => {
           setReady(true);
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           setError(`${err}`);
         });
     }
@@ -46,7 +46,7 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (connection) {
-      connection.on("ReceiveMessage", (user, message) => {
+      connection.on("ReceiveMessage", (user: string, message: string) => {
         const newMessages = messages.concat(`${user}: ${message}`);
         setMessages(newMessages);
       });
