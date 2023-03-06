@@ -12,7 +12,7 @@ export default function ChatPage() {
 
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSendMessage = () => {
