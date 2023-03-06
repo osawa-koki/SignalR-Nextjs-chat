@@ -14,7 +14,7 @@ namespace sinalr_nextjs_chat
         options.AddPolicy(name: MyCORS,
           policy =>
           {
-            policy.WithOrigins("*");
+            policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials(); ;
           });
       });
 
