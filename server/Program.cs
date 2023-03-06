@@ -1,4 +1,4 @@
-namespace rc4_chat_room
+namespace sgnalr_nextjs_chat
 {
   public class Program
   {
